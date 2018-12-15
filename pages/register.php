@@ -254,4 +254,10 @@
 
 		</div>
 	</body>
+	<br>
+	<br>
+
+	<?php 
+		include_once 'footer.php';
+	?>
 </html>

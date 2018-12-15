@@ -64,5 +64,9 @@
 				</div>
 			</div>
 		</div>
+		<br> <br>
+		<?php 
+		include_once 'pages/footer.php';
+	 ?>
 	</body>
 </html>
