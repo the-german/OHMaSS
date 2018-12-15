@@ -189,6 +189,7 @@
 				</div>
 
 			  	<button class="btn btn-primary" type="submit" name="submit">Save</button>
+			  	
 			</form>
 			<?php 
 				if (isset($_POST['submit'])) {
@@ -220,36 +221,8 @@
 				$query = "INSERT INTO medicament (med_code, med_desc, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site) VALUES ('".$code."','".$description."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."')";
 
 				$connection->exec($query);
-
-				// $statement = $connection->prepare($query);
-   	// 			$statement->execute(array(
-				// 		'med_code' => $code, 
-				// 		'med_desc' => $description,
-				// 		'med_forme' => $forme,
-				// 		'exp_date' => $date_expiration, 
-				// 		'med_unit' => $unite, 
-				// 		'med_pack_size' => $pack_size, 
-				// 		'med_tot' => $total_medicament, 
-				// 		'med_batch' => $batch, 
-				// 		'med_status' => $statut, 
-				// 		'med_price_unit' => $prix_unitaire, 
-				// 		'med_price_tot' => $prix_total, 
-				// 		'med_weight_unit' => $poids_unitaire, 
-				// 		'med_weight_tot' => $poids_total,
-				// 		'med_volume_uni' => $volume_unitaire, 
-				// 		'med_volume_tot' => $volume_total, 
-				// 		'med_bud_holder' => $budget, 
-				// 		'med_date_inventory' => $date_inventaire, 
-				// 		'name_acc' => $accomp, 
-				// 		'name_categorie' => $categories,  
-				// 		'name_chef_equipe' => $chef_equipe, 
-				// 		'name_reseau' => $reseau, 
-				// 		'name_site' => $site 
-				// 	));
-
-   	// 			$data->$statement->fetchAll();
-   			
    			}
+
 			 ?>
 
 		</div>
