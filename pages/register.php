@@ -63,17 +63,17 @@
 				       	<input type="text" class="form-control" name="batch" placeholder="Batch" required >
 				    </div>
 				    <div class="col-md-4 mb-3">
-				       <label for=""> Statut</label>
+				       <label for=""> Status des médicament</label>
 				       <select name="statut" class="custom-select">
 							<option value="Expired" selected>Expired</option>
-							<option value="Non-Expired">Non-Expired</option>
+							<option value="Altere">Altere</option>
 						</select>
 				    </div> 
 			  	</div>
 
 			  	<div class="form-row">
 				    <div class="col-md-4 mb-3">
-				      	<label for="prix_unitaire">Prix Unitaire</label>
+				      	<label for="prix_unitaire">Drug price</label>
 				      	<input type="number" class="form-control" name="prix_unitaire" placeholder="" required >
 				    </div>
 				    <div class="col-md-4 mb-3">
@@ -96,10 +96,13 @@
 				      	<input type="number" class="form-control" name="volume_total" required readonly>
 				    </div>
 				    <div class="col-md-4 mb-3">
-				       <label for=""> budget holder</label>
+				       <label for=""> Budget Holder</label>
 				       <select  name="budget" class="custom-select">
-							<option selected>OHMaSS</option>
-							<option value="1">PSM</option>
+							<option value="OHMaSS" selected>OHMaSS</option>
+							<option value="PSM">PSM</option>
+							<option value="UNDP">UNDP</option>
+							<option value="SCMS">SCMS</option>
+							<option value="Inconnu">Inconnu</option>
 						</select>
 				    </div>
 			  	</div>
