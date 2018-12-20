@@ -74,26 +74,26 @@
 			  	<div class="form-row">
 				    <div class="col-md-4 mb-3">
 				      	<label for="prix_unitaire">Drug price</label>
-				      	<input type="number" class="form-control" name="prix_unitaire" placeholder="" required >
+				      	<input type="number" step=0.01 class="form-control" name="prix_unitaire" placeholder="" required >
 				    </div>
 				    <div class="col-md-4 mb-3">
 				      	<label for="prix_total">Prix Total</label>
-				      	<input type="number" class="form-control" name="prix_total" required readonly>
+				      	<input type="number"class="form-control" name="prix_total" required readonly>
 				    </div>
 				    <div class="col-md-4 mb-3">
 				      	<label for="poids_unitaire">Poids Unitaire</label>
-				      	<input type="number" class="form-control" name="poids_unitaire" placeholder="" required >
+				      	<input type="number" step=0.01 class="form-control" name="poids_unitaire" placeholder="" required >
 				    </div>
 			  	</div>
 
 			  	<div class="form-row">
 				    <div class="col-md-4 mb-3">
 				      	<label for="prix_unitaire">Volume Unitaire</label>
-				      	<input type="number" class="form-control" name="volume_unitaire" placeholder="" required>
+				      	<input type="number" step=0.01 class="form-control" name="volume_unitaire" placeholder="" required>
 				    </div>
 				    <div class="col-md-4 mb-3">
 				      	<label for="prix_total">Volume Total</label>
-				      	<input type="number" class="form-control" name="volume_total" required readonly>
+				      	<input type="number " step=0.01 class="form-control" name="volume_total" required readonly>
 				    </div>
 				    <div class="col-md-4 mb-3">
 				       <label for=""> Budget Holder</label>
@@ -130,7 +130,7 @@
 					    </div>
 
 					    	<div class="col-md-4 mb-3">
-					      	<label for="prix_total">Commune</label>
+					      	<label for="commune">Commune</label>
 					      	<input type="text" class="form-control" name="commune" required>
 					    </div>
 				  </div>
