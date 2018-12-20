@@ -108,10 +108,31 @@
 			  	</div>
 
 			  	<div class="form-row">
-			  	<div class="col-md-4 mb-3">
-				      	<label for="prix_total">Poids Total</label>
-				      	<input type="number" class="form-control" name="poids_total" required readonly>
-				    </div>
+				  	<div class="col-md-4 mb-3">
+					      	<label for="prix_total">Poids Total</label>
+					      	<input type="number" class="form-control" name="poids_total" required readonly>
+					    </div>
+
+				  	<div class="col-md-4 mb-3">
+					    <label for=""> Département </label>
+				       <select name="departement" class="custom-select">
+				       		<option value="Ouest" selected>Ouest</option>
+				       		<option value="Nord">Nord</option>
+				       		<option value="Nord Est">Nord Est</option>
+				       		<option value="Nord ouest">Nord ouest</option>
+				       		<option value="Centre">Centre</option>
+				       		<option value="Artibonite">Artibonite</option>
+				       		<option value="Sud">Sud</option>
+				       		<option value="Sud Est">Sud Est</option>
+				       		<option value="Nippes">Nippes</option>
+				       		<option value="Grand Anse">Grand Anse</option>
+								</select>	
+					    </div>
+
+					    	<div class="col-md-4 mb-3">
+					      	<label for="prix_total">Commune</label>
+					      	<input type="text" class="form-control" name="commune" required>
+					    </div>
 				  </div>
 
 			  	<div class="form-row">
@@ -142,7 +163,7 @@
 				       		<option value="TB">TB</option>
 				       		<option value="Malaria">Malaria</option>
 				       		<option value="PF">PF</option>
-						</select>
+							</select>
 				    </div> 
 				</div>
 
@@ -218,10 +239,12 @@
 					$chef_equipe = $_POST['chef_equipe'];
 					$reseau = $_POST['reseau'];
 					$budget = $_POST['budget'];
+					$departement = $_POST['departement'];
+					$commune = $_POST['commune'];
 					$poids_total = $poids_unitaire * $pack_size;
 
 
-				$query = "INSERT INTO medicament (med_code, med_desc, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site) VALUES ('".$code."','".$description."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."')";
+				$query = "INSERT INTO medicament (med_code, med_desc, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site,med_site_dep,med_site_com) VALUES ('".$code."','".$description."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."','".$departement."','".$commune."')";
 
 				$connection->exec($query);
    			}
