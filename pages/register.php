@@ -57,7 +57,7 @@
 				      	</select>
 				    </div>
 				    <div class="col-md-4 mb-3">
-				      	<label for="adresse">Adresse</label>
+				      	<label for="adresse">Adresse Manufacture</label>
 				      	<input type="text" class="form-control" name="adresse" placeholder="Adresse" required>
 				    </div>
 				    <div class="col-md-4 mb-3">
@@ -82,8 +82,8 @@
 				      	<input type="date" class="form-control" name="date_expiration" placeholder="Date d'expiration" required>
 				    </div>
 				    <div class="col-md-4 mb-3">
-				      	<label for="unite">Unite</label>
-				      	<input type="number" class="form-control" name="unite" placeholder="Unite" required>
+				      	<label for="unite">Quantité en unite</label>
+				      	<input type="number" class="form-control" name="unite" placeholder="Quantité en unite" required>
 				    </div>
 				    <div class="col-md-4 mb-3">
 				      	<label for="pack_size">Pack Size</label>
@@ -93,7 +93,7 @@
 
 			  	<div class="form-row">
 				    <div class="col-md-4 mb-3">
-				      	<label for="total_medicament">Total Medicament</label>
+				      	<label for="total_medicament">Total Medicament en pack size</label>
 				      	<input type="text" class="form-control" name="total_medicament"  value="" readonly>
 				    </div>
 				    <div class="col-md-4 mb-3">
@@ -179,7 +179,7 @@
        							<div class="input-group-prepend">
           						<div class="input-group-text">KG</div>
         						</div>
-					      		<input type="number" class="form-control" name="poids_total" required readonly value="<?php echo $_POST['poids_unitaire']?>">
+					      		<input type="number" class="form-control" name="poids_total" required readonly>
 					      	</div>
 					    </div>
 
@@ -279,7 +279,14 @@
 							 	}
 							  ?>
 						</select>
-				    </div>  
+				    </div> 
+				    <div class="col-md-4 mb-3">
+				      	<label for="">Regulation</label>
+				      	<select name="regulation" class="custom-select">
+				      		<option value="Reguler" selected>Reguler</option>
+				      		<option value="Non-Reguler" >Non-Reguler</option>
+				      	</select>
+				    </div> 
 				</div>
 
 			  	<button class="btn btn-primary" type="submit" name="submit">Save</button>
@@ -294,14 +301,14 @@
 					$date_expiration = $_POST['date_expiration'];
 					$unite = $_POST['unite'];
 					$pack_size = $_POST['pack_size'];
-					$total_medicament = $unite * $pack_size;
+					$total_medicament = $unite / $pack_size;
 					$batch = $_POST['batch'];
 					$statut = $_POST['statut'];
 					$prix_unitaire = $_POST['prix_unitaire'];
-					$prix_total = $prix_unitaire * $pack_size;
+					$prix_total = $prix_unitaire * $total_medicament;
 					$poids_unitaire = $_POST['poids_unitaire'];
 					$volume_unitaire = $_POST['volume_unitaire'];
-					$volume_total = $prix_unitaire * $pack_size;
+					$volume_total = $volume_unitaire * $unite;
 					$date_inventaire = $_POST['date_inventaire'];
 					$site = $_POST['site'];
 					$categories = $_POST['categories'];
@@ -314,10 +321,11 @@
 					$pays = $_POST['pays'];
 					$manufacture = $_POST['nom_manufacture'];
 					$adresse = $_POST['adresse'];
-					$poids_total = $poids_unitaire * $pack_size;
+					$regulation = $_POST['regulation'];
+					$poids_total = $poids_unitaire * $unite;
 
 
-				$query = "INSERT INTO medicament (med_code, med_desc,med_pays_origin,med_nom_manufacture,med_man_adresse, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site,med_site_dep,med_site_com) VALUES ('".$code."','".$description."','".$pays."','".$manufacture."','".$adresse."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."','".$departement."','".$commune."')";
+				$query = "INSERT INTO medicament (med_code, med_desc,med_pays_origin,med_nom_manufacture,med_man_adresse,med_regul, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site,med_site_dep,med_site_com) VALUES ('".$code."','".$description."','".$pays."','".$manufacture."','".$adresse."','".$regulation."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."','".$departement."','".$commune."')";
 
 				$connection->exec($query);
    			}
