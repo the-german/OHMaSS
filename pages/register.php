@@ -11,7 +11,7 @@
 	}
  ?>
 	<body>
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<nav  id="header" class="navbar navbar-expand-sm bg-dark navbar-dark">
   			<p class="navbar-brand"><?php if (isset($message)) echo $message; ?></p>
   			<div id="button"><a href="logout.php"><button class="btn btn-success" type="submit">Logout</button></a></div>
 		</nav>
@@ -29,13 +29,51 @@
 				    <div class="col-md-4 mb-3">
 				       <label for=""> Forme </label>
 				       <select name="forme" class="custom-select">
-							<option value="Orales" selected>Orales</option>
+				       	<option value="Solide" selected>Solide </option>
+								<option value="Semi-Solide">Semi-Solide </option>
+							<!-- <option value="Orales" selected>Orales</option>
 							<option value="injectables">injectables </option>
 							<option value="dermiques">dermiques </option>
 							<option value="inhalées">inhalées</option>
-							<option value="rectales">rectales </option>
+							<option value="rectales">rectales </option> -->
 						</select>
 				    </div> 
+			  	</div>
+
+			  	<div class="form-row">
+				    <div class="col-md-4 mb-3">
+				      	<label for="">Nom Manufacture</label>
+				      	<select name="nom_manufacture" class="custom-select">
+				      			<?php 
+										$reponse = $connection->query("SELECT * FROM manufacture");
+										while ($donnees = $reponse->fetch())
+										{
+									 ?>
+									 	<option value="<?php echo $donnees['nom_manufacture']; ?>"> <?php echo $donnees['nom_manufacture'];?></option>
+									 <?php 
+									 	}
+									  ?>
+				      		 ?>
+				      	</select>
+				    </div>
+				    <div class="col-md-4 mb-3">
+				      	<label for="adresse">Adresse</label>
+				      	<input type="text" class="form-control" name="adresse" placeholder="Adresse" required>
+				    </div>
+				    <div class="col-md-4 mb-3">
+				      	<label for="">Pays Origine Medicament</label>
+				      		<select name="pays" class="custom-select">
+						      	<?php 
+										$reponse = $connection->query("SELECT * FROM pays");
+										while ($donnees = $reponse->fetch())
+										{
+									 ?>
+									 	<option value="<?php echo $donnees['en']; ?>"> <?php echo $donnees['en'];?></option>
+									 <?php 
+									 	}
+									  ?>
+									</select>
+				    </div>
 			  	</div>
 
 			  	<div class="form-row">
@@ -67,6 +105,7 @@
 				       <select name="statut" class="custom-select">
 							<option value="Expired" selected>Expired</option>
 							<option value="Altere">Altere</option>
+							<option value="Non-utilisable">Non-utilisable</option>
 						</select>
 				    </div> 
 			  	</div>
@@ -140,7 +179,7 @@
        							<div class="input-group-prepend">
           						<div class="input-group-text">KG</div>
         						</div>
-					      		<input type="number" class="form-control" name="poids_total" required readonly>
+					      		<input type="number" class="form-control" name="poids_total" required readonly value="<?php echo $_POST['poids_unitaire']?>">
 					      	</div>
 					    </div>
 
@@ -272,10 +311,13 @@
 					$budget = $_POST['budget'];
 					$departement = $_POST['departement'];
 					$commune = $_POST['commune'];
+					$pays = $_POST['pays'];
+					$manufacture = $_POST['nom_manufacture'];
+					$adresse = $_POST['adresse'];
 					$poids_total = $poids_unitaire * $pack_size;
 
 
-				$query = "INSERT INTO medicament (med_code, med_desc, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site,med_site_dep,med_site_com) VALUES ('".$code."','".$description."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."','".$departement."','".$commune."')";
+				$query = "INSERT INTO medicament (med_code, med_desc,med_pays_origin,med_nom_manufacture,med_man_adresse, med_forme, exp_date, med_unit, med_pack_size, med_tot, med_batch, med_status,med_price_unit, med_price_tot, med_weight_unit, med_weight_tot, med_volume_unit, med_volume_tot, med_bud_holder, med_date_inventory, name_acc, name_categorie, name_chef_equipe, name_reseau, name_site,med_site_dep,med_site_com) VALUES ('".$code."','".$description."','".$pays."','".$manufacture."','".$adresse."','".$forme."','".$date_expiration."','".$unite."','".$pack_size."','".$total_medicament."','".$batch."','".$statut."','".$prix_unitaire."','".$prix_total."','".$poids_unitaire."','".$poids_total."','".$volume_unitaire."','".$volume_total."','".$budget."','".$date_inventaire."','".$accomp."','".$categories."','".$chef_equipe."','".$reseau."','".$site."','".$departement."','".$commune."')";
 
 				$connection->exec($query);
    			}
